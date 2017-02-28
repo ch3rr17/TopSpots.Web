@@ -4,7 +4,8 @@
     angular
         .module('app', [
             'ui.router',
-            'toastr'
+            'toastr',
+            'xeditable'
         ])
 
     .config(['$stateProvider', '$urlRouterProvider',  function($stateProvider, $urlRouterProvider) {
@@ -17,6 +18,10 @@
         })
 
     }])
+
+    .run(function(editableOptions) {
+        editableOptions.theme = 'bs3';
+      })
 
     .value('apiUrl', 'http://localhost:51268/api/');
 
