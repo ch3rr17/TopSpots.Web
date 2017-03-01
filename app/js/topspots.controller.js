@@ -12,14 +12,10 @@
         var vm = this;
         vm.title = 'TopSpotsController';
 
-
-
         vm.showAddForm = false;
         ////////////////
 
-
         getTopSpots();
-
         function getTopSpots() {
             TopSpotsFactory.grabTopSpots()
                 .then(
@@ -31,10 +27,7 @@
                         toastr.error(message);
                     }
                 );
-
-        };
-
-
+        }
 
         vm.addTopSpot = function(newTopSpot){
             vm.topspot.location = [Number(vm.topspot.latitude),Number(vm.topspot.longitude)];
@@ -49,13 +42,12 @@
                     toastr.error(message);
                 });
 
-        };
+        }
 
-      vm.updateTopSpot = function(topspot){
-        TopSpotsFactory.updateSpot(topspot)
+      vm.updateTopSpot = function(topspot,id){
+        TopSpotsFactory.updateSpot(topspot,id)
                       .then(
                         function(response){
-
                         },
                         function(error){
                           toastr.warning("can't update");
@@ -63,8 +55,9 @@
                       );
       }
 
-        vm.deleteTopSpot = function(id,index){
-          TopSpotsFactory.delTopSpot(id)
+        vm.deleteTopSpot = function(index){
+          // console.log(spots);
+          TopSpotsFactory.delTopSpot(index)
                         .then(
                           function(response){
                             vm.topspots.splice(index,1);
@@ -74,7 +67,7 @@
                             //toastr.error(error);
                           }
                         );
-        };
+        }
 
     }
 })();

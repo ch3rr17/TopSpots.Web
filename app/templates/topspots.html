@@ -33,9 +33,13 @@
         </thead>
         <tbody ng-repeat="topspot in vm.topspots track by $index">
             <tr>
-                <td><a href="#" editable-text="topspot.name" e-label="TopSpot Name">{{ topspot.name || 'empty' }}</a><button class="btn btn-primary" ng-click="vm.updateTopSpot(topspot)">UPDATE</button><button class="btn btn-warning" ng-click="vm.deleteTopSpot(id, $index)">DELETE</button></td>
+                <td><a href="#" editable-text="topspot.name" e-label="TopSpot Name">{{ topspot.name || 'empty' }}</a></td>
                 <td><a href="#" editable-text="topspot.description" e-label="TopSpot Description">{{ topspot.description || 'empty' }}</a></td>
                 <td><a href="#" editable-text="topspot.location" e-label="TopSpot Location">{{ topspot.location || 'empty' }}</a></td>
+                <td>
+                  <button class="btn btn-primary btn-sm" ng-click="vm.updateTopSpot(topspot,$index)">UPDATE</button>
+                  <button class="btn btn-danger btn-sm" ng-click="vm.deleteTopSpot($index)">DELETE</button>
+                </td>
             </tr>
         </tbody>
     </table>

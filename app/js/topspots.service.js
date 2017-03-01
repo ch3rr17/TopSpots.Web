@@ -19,6 +19,7 @@
 
         ////////////////
 
+//GRAB TOP SPOTS
         function grabTopSpots() {
             var defer = $q.defer();
 
@@ -37,6 +38,7 @@
             return defer.promise
         }
 
+//ADD NEW TOPSPOT
         function newTopSpot(topspot) {
             var defer = $q.defer();
 
@@ -53,17 +55,20 @@
             return defer.promise;
         }
 
-        function updateSpot(topspots){
+//UPDATE TOPSPOT
+        function updateSpot(topspot,id){
           var defer = $q.defer();
-
+          var url = apiUrl + 'topspots' + '/' + id;
+          console.log(topspot);
           $http({
             method: 'PUT',
-            url: apiUrl,
-            data: topspots
+            url: url,
+            data: topspot
           })
           .then(
             function(response){
               defer.resolve(response);
+              console.log(response);
               toastr.success("UPDATED TOPSPOT");
             },
             function(error){
@@ -74,13 +79,14 @@
           return defer.promise;
         }
 
+//DELETE TOPSPOT
         function delTopSpot(id){
           var defer = $q.defer();
-
+          var url = apiUrl + 'topspots' + '/' + id;
+          console.log(url);
           $http({
             method: 'DELETE',
-            url: apiUrl + id
-
+            url: url
           })
           .then(
             function(response){
